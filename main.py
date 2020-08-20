@@ -1,9 +1,9 @@
 import MainWindow
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QTableWidgetItem, QAbstractItemView, QHeaderView, \
     QListWidgetItem
-from PyQt5.QtGui import QPixmap, QIcon, QFont, QPicture
+from PyQt5.QtGui import QPixmap, QIcon, QFont, QPicture,QPalette
 from PyQt5.QtCore import QRegExp, Qt, QStringListModel, QModelIndex
-import sys
+import sys,os
 import pandas as pd
 import numpy as np
 import xlrd
@@ -13,14 +13,17 @@ class newUI(QMainWindow, MainWindow.Ui_MainWindow):
     def __init__(self):
         super(newUI, self).__init__()
         self.setupUi(self)
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
         self.chipdata_headers = []
         self.initUI()
         self.mainExe()
+
 
     def initUI(self):
         # 设置窗口只有最小化和关闭按钮,设置窗口的长宽为固定值
         self.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
         self.setFixedSize(self.width(), self.height())
+        self.setWindowIcon(QIcon(r"4.png"))
         # 设置表格为不能编辑
         self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
         # 设置表格单元格在横纵方向上随字体拉升
@@ -28,6 +31,13 @@ class newUI(QMainWindow, MainWindow.Ui_MainWindow):
         self.tableWidget.verticalHeader().setSectionResizeMode(QHeaderView.Stretch)
         # 设置单元格字体
         self.tableWidget.setFont(QFont("微软雅黑", 8))
+
+        #设置label
+        self.label_markR.setStyleSheet("color: red")
+        self.label_markG.setStyleSheet("color: green")
+        self.label_markB.setStyleSheet("color: blue")
+
+        self.label_Spec.setText("<A href=' '>规格书</a>")
 
         # 设置comboBox的选项
         list_supplier = ["1.晶电", "2.三安", "3.华灿"]
@@ -52,6 +62,7 @@ class newUI(QMainWindow, MainWindow.Ui_MainWindow):
         self.comboBox.activated.connect(self.comboBox_selected)
         self.listWidget.itemClicked.connect(self.listwidget_clicked)
         self.listWidget.itemClicked.connect(self.listwidget_clicked2)
+        self.label_Spec.linkActivated.connect(self.openfile)
 
     def dataImport(self, supplier_name):
         # 导入表头并设置给tablewidget
@@ -139,6 +150,18 @@ class newUI(QMainWindow, MainWindow.Ui_MainWindow):
             self.label_B_sapphire.setScaledContents(True)
             self.label_B_pad.setPixmap(picture_pad)
             self.label_B_sapphire.setPixmap(picture_sapphire)
+    def openfile(self):
+        supplier=self.comboBox.currentText()
+        if self.listWidget.selectedItems():#listwidget被选中时才能触发.不加这一句会报错退出
+            listwidget_selected_chiptpye =self.tableWidget.item(0,1).text()
+            listwidget_selected_NO =self.tableWidget.item(0,0).text()
+            root=os.getcwd()#获取根目录
+            print(sys.path[0])#获取根目录
+            pdfPath=root+"/chipdata/芯片产品规格书/"+supplier+"-芯片产品规格书/"+listwidget_selected_NO+"."+listwidget_selected_chiptpye+".pdf"
+            # print(pdfPath)
+            if os.path.exists(pdfPath):#只有文件存在时才打开.不加这一句会报错
+                os.startfile(pdfPath)
+
 
 
 if __name__ == '__main__':

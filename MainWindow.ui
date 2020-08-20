@@ -131,7 +131,7 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label_markR">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -143,6 +143,14 @@
           <width>16777215</width>
           <height>20</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="text">
          <string>R</string>
@@ -198,7 +206,7 @@
        </widget>
       </item>
       <item row="0" column="4">
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_markG">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -210,6 +218,14 @@
           <width>16777215</width>
           <height>20</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="text">
          <string>G</string>
@@ -324,7 +340,7 @@
        </widget>
       </item>
       <item row="0" column="6">
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="label_markB">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -336,6 +352,14 @@
           <width>16777215</width>
           <height>20</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="text">
          <string>B</string>
@@ -391,7 +415,7 @@
     <widget class="QWidget" name="formLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>10</x>
        <y>30</y>
        <width>160</width>
        <height>22</height>
@@ -412,7 +436,11 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="comboBox">
+        <property name="statusTip">
+         <string>选择供应商</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -426,12 +454,28 @@
       </rect>
      </property>
     </widget>
+    <widget class="QLabel" name="label_Spec">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>30</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>规格书</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>510</y>
+      <x>870</x>
+      <y>520</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -443,11 +487,17 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>510</y>
+      <x>985</x>
+      <y>520</y>
       <width>75</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="statusTip">
+     <string>窗口最小化</string>
     </property>
     <property name="text">
      <string>隐藏</string>
@@ -554,15 +604,15 @@
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>hide()</slot>
+   <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>997</x>
      <y>545</y>
     </hint>
     <hint type="destinationlabel">
-     <x>751</x>
-     <y>552</y>
+     <x>749</x>
+     <y>550</y>
     </hint>
    </hints>
   </connection>
