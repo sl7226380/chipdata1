@@ -231,6 +231,6 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "B"))
         self.groupBox_2.setTitle(_translate("MainWindow", "筛选区域"))
         self.label_12.setText(_translate("MainWindow", "供应商:"))
-        self.pushButton.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton_2.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton.setText(_translate("MainWindow", "备用按钮"))
+        self.pushButton_2.setText(_translate("MainWindow", "隐藏"))
         self.tableWidget.setSortingEnabled(False)
